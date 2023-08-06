@@ -4,11 +4,13 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import RootLayout from '@/layout/RootLayout'
 import { Card, Col, Row } from 'antd'
-
+import { base_url } from '@/base_url'
+// import { useSession } from "next-auth/react";
 const { Meta } = Card;
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Homepage({ allProducts }) {
+  // const { data: session } = useSession()
   console.log("🚀 ~ file: index.js:10 ~ Homepage ~ allProducts:", allProducts)
   return (
     <>
@@ -21,7 +23,7 @@ export default function Homepage({ allProducts }) {
       <div>
         <p style={{
           fontSize: '2rem',
-          marginTop: "10px",
+          marginTop: "40px",
           marginBottom:"20px"
         }} className={styles.texcenter}>Featured Products</p>
         <Row gutter={[16, 16]}>
@@ -46,7 +48,7 @@ export default function Homepage({ allProducts }) {
                   width: 240,
                   height:400
                 }}
-                cover={<img alt="example" src={product.image} style={{padding:"5px",height:"200px",width:"100%"}} />}
+                // cover={<Image alt="example" src={product.image} style={{padding:"5px",height:"200px",width:"100%"}} />}
               >
                 {/* <Meta title="Europe Street beat" description="www.instagram.com" /> */}
                 <span>{product.productName}</span>
@@ -69,7 +71,7 @@ Homepage.getLayout = function getLayout(page) {
   )
 }
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3000/api/products')
+  const res = await fetch(`${base_url}/api/products`)
   const data = await res.json()
   return {
     props: {

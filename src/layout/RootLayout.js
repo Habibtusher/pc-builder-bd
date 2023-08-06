@@ -9,11 +9,11 @@ const RootLayout = ({ children }) => {
     } = theme.useToken();
     const items = [
         {
-            label: <a href="https://www.antgroup.com">1st menu item</a>,
+            label: <Link href="/category/Processor">Processor</Link>,
             key: '0',
         },
         {
-            label: <a href="https://www.aliyun.com">2nd menu item</a>,
+            label: "ggg",
             key: '1',
         },
         {
@@ -25,7 +25,7 @@ const RootLayout = ({ children }) => {
         },
     ];
     return (
-        <Layout className="layout">
+        <Layout  className="layout">
             <Header
                 style={{
                     display: 'flex',
@@ -62,6 +62,7 @@ const RootLayout = ({ children }) => {
 
                 </Menu>
             </Header>
+
             <Content
                 style={{
                     padding: '0 50px',
@@ -77,6 +78,7 @@ const RootLayout = ({ children }) => {
                     {children}
                 </div>
             </Content>
+
             <Footer
                 style={{
                     textAlign: 'center',
