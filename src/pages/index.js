@@ -7,13 +7,15 @@ import { Card, Col, Row } from 'antd'
 import { base_url } from '@/base_url'
 import { loadProduct } from '@/apicall/products'
 import { useSession } from "next-auth/react";
+import { useGetProductsQuery } from '@/redux/api/api'
 const { Meta } = Card;
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Homepage({ allProducts }) {
-
-  const { data: session } = useSession()
-  console.log("🚀 ~ file: index.js:10 ~ Homepage ~ allProducts:", session)
+  const { data, isLoading } = useGetProductsQuery()
+  console.log("🚀 ~ file: index.js:16 ~ Homepage ~ data:", data)
+  // const { data: session } = useSession()
+  // console.log("🚀 ~ file: index.js:10 ~ Homepage ~ allProducts:", session)
   return (
     <>
       <Head>
@@ -29,7 +31,7 @@ export default function Homepage({ allProducts }) {
           marginBottom: "20px"
         }} className={styles.texcenter}>Featured Products</p>
         <Row gutter={[16, 16]}>
-          {allProducts?.map((product) => (
+          {data?.data?.map((product) => (
             <Col key={product._id} className="gutter-row"
               xs={{
                 span: 24,

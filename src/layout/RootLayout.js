@@ -9,19 +9,32 @@ const RootLayout = ({ children }) => {
     } = theme.useToken();
     const items = [
         {
-            label: <Link href="/category/Processor">Processor</Link>,
+            label: <Link href="/category/processor">CPU /Processor</Link>,
             key: '0',
         },
         {
-            label: "ggg",
+            label: <Link href="/category/motherboard">Motherboard</Link>,
             key: '1',
         },
         {
-            type: 'divider',
+            label: <Link href="/category/ram">RAM</Link>,
+            key: '2',
         },
         {
-            label: '3rd menu item',
+            label: <Link href="/category/power-supply">Power Supply Unit</Link>,
             key: '3',
+        },
+        {
+            label: <Link href="/category/storage">Storage Device</Link>,
+            key: '4',
+        },
+        {
+            label: <Link href="/category/monitor">Monitor</Link>,
+            key: '5',
+        },
+        {
+            label: <Link href="/category/others">Others</Link>,
+            key: '6',
         },
     ];
     return (
@@ -56,8 +69,11 @@ const RootLayout = ({ children }) => {
                             </Space>
                         </a>
                     </Dropdown>
-                    <Link style={{ marginLeft: "10px" }} href="/"><Button type="primary" ghost>
+                    <Link style={{ marginLeft: "10px" }} href="/pc-build"><Button type="primary" ghost>
                         PC Builder
+                    </Button></Link>
+                    <Link style={{ marginLeft: "10px" }} href="/login"><Button type="primary" ghost>
+                        Login
                     </Button></Link>
 
                 </Menu>
