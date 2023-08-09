@@ -5,11 +5,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define our single API slice object
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
+  baseQuery: fetchBaseQuery({ baseUrl: server_url }),
  
   endpoints: builder => ({
     getProducts: builder.query({
-      query: () => '/products'
+      query: () => '/all-products'
     }),
     getProductsByCategory: builder.query({
       query: (category) => `/products/${category}`
@@ -17,8 +17,11 @@ export const apiSlice = createApi({
     getProductsById: builder.query({
       query: (id) => `/product/${id}`
     }),
+    getCategories: builder.query({
+      query: (id) => `/categories`
+    }),
   })
 })
 
 
-export const { useGetProductsQuery,useGetProductsByCategoryQuery,useGetProductsByIdQuery } = apiSlice
+export const { useGetProductsQuery,useGetProductsByCategoryQuery,useGetProductsByIdQuery,useGetCategoriesQuery } = apiSlice

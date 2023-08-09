@@ -17,7 +17,11 @@ const ProductDetails = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div>
-                <h1 style={{ marginTop: "20px", marginBottom: "50px", textAlign: "center" }}>Product Details</h1>
+                <h1 style={{
+                    fontSize: '2rem',
+                    marginTop: "40px",
+                    marginBottom: "20px"
+                }}>Product Details</h1>
                 <Row gutter={[40, 16]}>
 
                     <Col
@@ -34,7 +38,7 @@ const ProductDetails = () => {
                             span: 12,
 
                         }}>
-                        <img style={{ width: "100%",height:'400px',objectFit:"contain" }} src={data?.data.image} />
+                        <img style={{ width: "100%", height: '400px', objectFit: "contain" }} src={data?.data.image} />
 
                     </Col >
                     <Col
@@ -51,7 +55,7 @@ const ProductDetails = () => {
                             span: 12,
 
                         }}
-                        style={{lineHeight:"1.8",fontWeight:500}}
+                        style={{ lineHeight: "1.8", fontWeight: 500 }}
                     >
                         <p>Product Name: {data?.data?.productName}</p>
                         <p>Category: {data?.data?.category}</p>
@@ -76,82 +80,82 @@ const ProductDetails = () => {
                             data?.data?.keyFeatures.Ethernet
                             &&
                             <p>Ethernet: {data?.data?.keyFeatures.Ethernet
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.memorySupport
                             &&
                             <p>Memory Support: {data?.data?.keyFeatures.memorySupport
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.USBPorts
                             &&
                             <p>USB Ports: {data?.data?.keyFeatures.USBPorts
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.capacity
                             &&
                             <p>Capacity: {data?.data?.keyFeatures.capacity
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.speed
                             &&
                             <p>Speed: {data?.data?.keyFeatures.speed
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.wattage
                             &&
                             <p>Wattage: {data?.data?.keyFeatures.wattage
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.efficiency
                             &&
                             <p>Efficiency: {data?.data?.keyFeatures.efficiency
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.resolution
                             &&
                             <p>Resolution: {data?.data?.keyFeatures.resolution
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.refreshRate
                             &&
                             <p>Refresh Rate: {data?.data?.keyFeatures.refreshRate
-                                }</p>
+                            }</p>
                         }
                         {
                             data?.data?.keyFeatures.panelType
                             &&
                             <p>Panel Type: {data?.data?.keyFeatures.panelType
-                                }</p>
+                            }</p>
                         }
 
                         <p >Individual Rating: {data?.data?.individualRating}</p>
                         <p>Average Rating: {data?.data?.averageRating}</p>
-                    
+
                     </Col>
-                    
+
                 </Row>
-                <div style={{marginTop:"15px",marginBottom:"20px",display:"flex",justifyContent:'center'}}>
+                <div style={{ marginTop: "15px", marginBottom: "20px", display: "flex", justifyContent: 'center' }}>
                     <div>
-                {
-                data?.data?.reviews?.map((review,i) =>(
-                    <div style={{marginTop:"10px"}} key={i}>
-                        <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
-                        <Avatar icon={<UserOutlined />} />
-                        <p style={{fontSize:"16px",fontWeight:600}}>{review?.reviewer}</p>
+                        {
+                            data?.data?.reviews?.map((review, i) => (
+                                <div style={{ marginTop: "10px" }} key={i}>
+                                    <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                                        <Avatar icon={<UserOutlined />} />
+                                        <p style={{ fontSize: "16px", fontWeight: 600 }}>{review?.reviewer}</p>
+                                    </div>
+                                    <p style={{}}>{review?.comment}</p>
+                                </div>
+                            ))}
                     </div>
-                    <p style={{}}>{review?.comment}</p>
-                    </div>
-                ))}
-                </div>
                 </div>
             </div>
         </div>

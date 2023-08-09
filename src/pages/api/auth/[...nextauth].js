@@ -1,3 +1,4 @@
+import { base_url } from "@/base_url"
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
@@ -14,7 +15,7 @@ export const authOptions = {
         }),
     ],
     pages: {
-        signIn: "https://pc-builder-bd-two.vercel.app/login",
+        signIn: `${base_url}/login`,
     }
 }
 

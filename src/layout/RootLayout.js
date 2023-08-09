@@ -3,10 +3,13 @@ import { Breadcrumb, Button, Dropdown, Layout, Menu, Space, theme } from 'antd';
 import Link from 'next/link';
 const { Header, Content, Footer } = Layout;
 import { DownOutlined } from '@ant-design/icons';
+import { signOut, useSession } from 'next-auth/react';
 const RootLayout = ({ children }) => {
     const {
         token: { colorBgContainer },
     } = theme.useToken();
+    const { data: session } = useSession()
+
     const items = [
         {
             label: <Link href="/category/processor">CPU /Processor</Link>,
@@ -38,7 +41,7 @@ const RootLayout = ({ children }) => {
         },
     ];
     return (
-        <Layout  className="layout">
+        <Layout className="layout">
             <Header
                 style={{
                     display: 'flex',
@@ -71,10 +74,20 @@ const RootLayout = ({ children }) => {
                     </Dropdown>
                     <Link style={{ marginLeft: "10px" }} href="/pc-build"><Button type="primary" ghost>
                         PC Builder
-                    </Button></Link>
-                    <Link style={{ marginLeft: "10px" }} href="/login"><Button type="primary" ghost>
-                        Login
-                    </Button></Link>
+                    </Button>
+                    </Link>
+                    {
+                        !session?.user?.email ?
+                            <Link style={{ marginLeft: "10px" }} href="/login"><Button type="primary" ghost>
+                                Login
+                            </Button>
+                            </Link> :
+                            <Button style={{marginTop:"16px" ,marginLeft:"7px"}} onClick={() => signOut()} type="primary" ghost>
+                                Logout
+                            </Button>
+
+                    }
+
 
                 </Menu>
             </Header>

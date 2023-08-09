@@ -7,15 +7,54 @@ import { Card, Col, Row } from 'antd'
 import { base_url } from '@/base_url'
 import { loadProduct } from '@/apicall/products'
 import { useSession } from "next-auth/react";
-import { useGetProductsQuery } from '@/redux/api/api'
+import { useGetCategoriesQuery, useGetProductsQuery } from '@/redux/api/api'
+import { useRouter } from 'next/router'
 const { Meta } = Card;
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Homepage({ allProducts }) {
-  const { data, isLoading } = useGetProductsQuery()
-  console.log("🚀 ~ file: index.js:16 ~ Homepage ~ data:", data)
-  // const { data: session } = useSession()
-  // console.log("🚀 ~ file: index.js:10 ~ Homepage ~ allProducts:", session)
+export default function Homepage() {
+  const { data, isLoading } = useGetProductsQuery(undefined)
+  // const { data: categories } = useGetCategoriesQuery(undefined)
+  // console.log("🚀 ~ file: index.js:18 ~ Homepage ~ categories:", categories)
+  const categories = [
+    {
+      category: "Monitor",
+      link: "monitor",
+      image: "https://www.cnet.com/a/img/resize/8d47065f9ecb62603a14d9b33f02e3e5c91a512e/hub/2021/05/12/0ad36336-efa0-4310-aff2-c268fec45350/samsung-lf27t350fhnxza-monitor.png?auto=webp&fit=crop&height=900&precrop=885,498,x0,y0&width=1200"
+    },
+    {
+      category: "Processor",
+      link: "processor",
+      image: "https://insider-gaming.com/wp-content/uploads/2022/12/amd-ryzen-cpu.png"
+    },
+    {
+      category: "Motherboard",
+      link: "motherboard",
+      image: "https://greentech.com.bd/image/cache/catalog/b550m-ds3h-ac-ud-550x550.jpg"
+    },
+    {
+      category: "RAM",
+      link: "ram",
+      image:'https://assets-prd.ignimgs.com/2022/06/24/corsair-dominator-platinum-rgb-1656107201735.jpg'
+  },
+  {
+    category:"Storage Devices",
+    link:"storage",
+    image:"https://i.pcmag.com/imagery/articles/07hyeZ8Gp093k9bdVYUCX8p-20.fit_lim.size_1200x630.v1599074618.jpg"
+  },
+  {
+    category:"Power Supply",
+    link:"power-supply",
+    image:'https://www.ultratech.com.bd/image/cache/catalog/power-supply/antec/meta-v450/antec-meta-v450-power-supply.jpg-500x500.jpg.webp'
+  },
+  {
+    category:"Others",
+    link:"others",
+    image:'https://www.startech.com.bd/image/cache/catalog/keyboard/havit/kb380l/kb380l-01-500x500.webp'
+  }
+  ]
+  const router = useRouter()
+
   return (
     <>
       <Head>
@@ -28,8 +67,9 @@ export default function Homepage({ allProducts }) {
         <p style={{
           fontSize: '2rem',
           marginTop: "40px",
-          marginBottom: "20px"
-        }} className={styles.texcenter}>Featured Products</p>
+          marginBottom: "40px",
+          textAlign:"center"
+        }} >Featured Products</p>
         <Row gutter={[16, 16]}>
           {data?.data?.map((product) => (
             <Col key={product._id} className="gutter-row"
@@ -47,6 +87,9 @@ export default function Homepage({ allProducts }) {
 
               }}>
               <Card
+                onClick={() => {
+                  router.push(`/product-details/${product._id}`)
+                }}
                 hoverable
                 style={{
                   width: 240,
@@ -62,6 +105,43 @@ export default function Homepage({ allProducts }) {
               </Card>
             </Col>
           ))}
+        </Row>
+        <p style={{
+          fontSize: '2rem',
+          marginTop: "40px",
+          marginBottom: "40px",
+          textAlign:"center"
+        }} >Featured Categories</p>
+        <Row gutter={[16, 16]} className="gutter-row">
+          {
+            categories.map((category, i) => (
+              <Col key={i} xs={{
+                span: 24,
+              }}
+                sm={{
+                  span: 12,
+                }}
+                md={{
+                  span: 8,
+                }}
+                lg={{
+                  span: 6,
+
+                }}>
+                <Card
+                  onClick={() => {
+                    router.push(`/category/${category.link}`)
+                  }}
+                  hoverable
+
+                  cover={<img alt="example" src={category?.image} style={{ padding: "5px", height: "200px", width: "100%" }} />}
+                >
+                  <p style={{ textAlign: "center", fontSize: "20px" }}>{category.category}</p>
+                </Card>
+              </Col>
+            ))
+          }
+
         </Row>
       </div>
     </>
