@@ -93,7 +93,7 @@ export default function Homepage() {
                 hoverable
                 style={{
                   width: 240,
-                  height: 400
+                  height:350
                 }}
                 cover={<img alt="example" src={product.image} style={{ padding: "5px", height: "200px", width: "100%" }} />}
               >
